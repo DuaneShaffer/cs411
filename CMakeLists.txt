@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.5.1)
-project(assn01)
+project(hw2)
 set (CMAKE_CXX_STANDARD 11)
-include_directories(headers)
 
 file(GLOB SOURCES "*.cpp")
 
