@@ -1009,7 +1009,7 @@ void test_build(Tester & t)
 
     start = std::clock();
     test_build_tiny(t);
-    // test_build_small(t);
+    test_build_small(t);
     duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
 
     std::cout<<"Time taken: "<< duration <<'\n';
