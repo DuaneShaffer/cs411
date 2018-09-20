@@ -35,7 +35,7 @@ int build(int w, int e, const vector<Bridge> & bridges) {
 
         temp = get_combo_value(combination, bridges);
         if (temp > max_toll)
-            if (b_valid_combo(combination, bridges, bad_bridge_combos)){
+            if (b_valid_combo(combination, bad_bridge_combos)){
                 max_toll = temp;
             }
     }
@@ -76,8 +76,7 @@ bool make_next_combo(vector<int> & combos) {
     }
 }
 
-bool b_valid_combo(const vector<int> & combination, const vector<Bridge> & bridges, 
-                    const vector<vector<int>> & bad_bridge_combos){
+bool b_valid_combo(const vector<int> & combination, const vector<vector<int>> & bad_bridge_combos){
     for (int i = 0; i < bad_bridge_combos.size(); ++i) {
         for (int j = 0; j < bad_bridge_combos[i].size(); ++j){
             if (combination[i] == 1 && combination[bad_bridge_combos[i][j]] == 1) 
