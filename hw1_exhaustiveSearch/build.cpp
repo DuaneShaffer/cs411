@@ -19,31 +19,25 @@ int build(int w, int e, const vector<Bridge> & bridges) {
     
     vector<int> combination(sizeof(bridges), 1);
     int max_possible_toll = 0;
+    int temp = 0;
     
     while (true) {
         
         // make next combination (binary +1)
         // validate bridges
         // determine if value is new max
-        save_if_new_max(combination, bridges, max_possible_toll);
 
-        try{
-        determine_if_finished(combination);
-        } catch (...) {
+        if (b_finished(combination))
             break;
-        }
     }
     return max_possible_toll;
 }
 
-void save_if_new_max(const vector<int> & combination, const vector<Bridge> & bridges, int max) {
 
-}
-
-void determine_if_finished(const vector<int> & binary_number) {
+bool b_finished(const vector<int> & binary_number) {
     for (auto i : binary_number) {
         if (i ==0)
-            return;
+            return false;
     }
-    throw std::runtime_error("Finished with all numbers");
+    return true;
 }
