@@ -12,6 +12,10 @@
 using std::vector;
 #include <stdexcept>
 
+#include <iostream>
+using std::cout;
+using std::endl;
+
 
 using Bridge = vector<int>;
 
@@ -22,8 +26,18 @@ int build(int w, int e, const vector<Bridge> & bridges) {
     int temp = 0;
     
     vector<vector<int>> bad_bridge_combos;
-    // Initialize bad_bridge_combos
-    
+    int leftSide = 0;
+    int rightSide = 1;
+
+    for (int i=0; i < bridges.size(); ++i){
+        for (int j=i+1; j < bridges.size(); ++j) {
+            if (((bridges[i][leftSide]<=bridges[j][leftSide] && bridges[i][rightSide] >= bridges[j][rightSide])) || 
+                ((bridges[i][leftSide]>=bridges[j][leftSide] && bridges[i][rightSide] <= bridges[j][rightSide]))){
+                bad_bridge_combos.push_back(vector<int>{i,j});
+                }
+        }
+    }
+
     while (true) {
         
         // make next combination (binary +1)
@@ -38,6 +52,11 @@ int build(int w, int e, const vector<Bridge> & bridges) {
             break;
         }
     return max_possible_toll;
+}
+
+
+void fill_bad_combos_vector(std::vector<std::vector<int>> & bad_bridge_combos, const std::vector<Bridge> & bridges){
+
 }
 
 bool b_valid_combo(const std::vector<int> & combination, const vector<Bridge> & bridges, 
