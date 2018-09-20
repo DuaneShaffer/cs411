@@ -17,7 +17,7 @@ using Bridge = vector<int>;
 
 int build(int w, int e, const vector<Bridge> & bridges) {
     
-    vector<int> combinations(sizeof(bridges), 1);
+    vector<int> combination(sizeof(bridges), 1);
     int max_possible_toll = 0;
     
     while (true) {
@@ -25,14 +25,19 @@ int build(int w, int e, const vector<Bridge> & bridges) {
         // make next combination (binary +1)
         // validate bridges
         // determine if value is new max
+        save_if_new_max(combination, bridges, max_possible_toll);
 
         try{
-        determine_if_finished(combinations);
+        determine_if_finished(combination);
         } catch (...) {
             break;
         }
     }
     return max_possible_toll;
+}
+
+void save_if_new_max(const vector<int> & combination, const vector<Bridge> & bridges, int max) {
+
 }
 
 void determine_if_finished(const vector<int> & binary_number) {

@@ -15,6 +15,7 @@ using Bridge = std::vector<int>;
 
 int build(int w, int e, const std::vector<Bridge> & bridges);
 
+void save_if_new_max(const std::vector<int> &, const std::vector<Bridge> & bridges, int);
 void determine_if_finished(const std::vector<int> & binaryNum);
 
 #endif //BUILD_HPP
