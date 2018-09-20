@@ -26,22 +26,11 @@ int build(int w, int e, const vector<Bridge> & bridges) {
     int temp = 0;
     
     vector<vector<int>> bad_bridge_combos;
-    int leftSide = 0;
-    int rightSide = 1;
-
-    for (int i=0; i < bridges.size(); ++i){
-        for (int j=i+1; j < bridges.size(); ++j) {
-            if (((bridges[i][leftSide]<=bridges[j][leftSide] && bridges[i][rightSide] >= bridges[j][rightSide])) || 
-                ((bridges[i][leftSide]>=bridges[j][leftSide] && bridges[i][rightSide] <= bridges[j][rightSide]))){
-                bad_bridge_combos.push_back(vector<int>{i,j});
-                }
-        }
-    }
+    fill_bad_combos_vector(bad_bridge_combos, bridges);
 
     while (true) {
         
         // make next combination (binary +1)
-        // validate bridges
 
         if (b_valid_combo(combination, bridges, bad_bridge_combos)){
             temp = get_combo_value(combination, bridges);
@@ -56,7 +45,17 @@ int build(int w, int e, const vector<Bridge> & bridges) {
 
 
 void fill_bad_combos_vector(std::vector<std::vector<int>> & bad_bridge_combos, const std::vector<Bridge> & bridges){
+    int leftSide = 0;
+    int rightSide = 1;
 
+    for (int i=0; i < bridges.size(); ++i){
+        for (int j=i+1; j < bridges.size(); ++j) {
+            if (((bridges[i][leftSide]<=bridges[j][leftSide] && bridges[i][rightSide] >= bridges[j][rightSide])) || 
+                ((bridges[i][leftSide]>=bridges[j][leftSide] && bridges[i][rightSide] <= bridges[j][rightSide]))){
+                bad_bridge_combos.push_back(vector<int>{i,j});
+                }
+        }
+    }
 }
 
 bool b_valid_combo(const std::vector<int> & combination, const vector<Bridge> & bridges, 
