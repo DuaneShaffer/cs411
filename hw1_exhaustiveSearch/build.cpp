@@ -30,16 +30,15 @@ int build(int w, int e, const vector<Bridge> & bridges) {
 
     while (true) {
         
-        make_next_combo(combination);
+        if (!make_next_combo(combination))
+            break;
 
         if (b_valid_combo(combination, bridges, bad_bridge_combos)){
             temp = get_combo_value(combination, bridges);
             if (temp > max_possible_toll)
                 max_possible_toll = temp;
         }
-        if (b_finished(combination))
-            break;
-        }
+    }
     return max_possible_toll;
 }
 
@@ -58,14 +57,16 @@ void fill_bad_combos_vector(std::vector<std::vector<int>> & bad_bridge_combos, c
     }
 }
 
-void make_next_combo(vector<int> & combos) {
+bool make_next_combo(vector<int> & combos) {
     // counts up with binary numbers reversed
             // 2^0 on the left and powers increasing to the right
     for (int i = 0; i < combos.size(); ++i) {
         if (combos[i] == 0) {
             combos[i] = 1;
-            break;
+            return true;
         }
+        if (i == combos.size()-1)
+            return false;
         combos[i] = 0;
     }
 }
@@ -86,12 +87,4 @@ int get_combo_value(const vector<int> & combination, const vector<Bridge> & brid
             temp += bridges[i][2];
     }
     return temp;
-}
-
-bool b_finished(const vector<int> & binary_number) {
-    for (auto i : binary_number) {
-        if (i ==0)
-            return false;
-    }
-    return true;
 }
