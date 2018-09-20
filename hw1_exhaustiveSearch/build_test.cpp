@@ -26,6 +26,10 @@
 #include <vector>       // for std::vector
 #include <cmath>        // for std::sqrt
 
+#include <cstdio>
+#include <ctime>
+
+
 // ************************************************************************
 // Testing Package:
 //     Class Tester - For Tracking Tests
@@ -82,15 +86,16 @@ public:
         ++countTests_;
         if (success) ++countPasses_;
 
-        std::cout << "    ";
-        if (testName != "")
-        {
-            std::cout << "Test: "
-                      << testName
-                      << " - ";
-        }
-        std::cout << (success ? "passed" : "********** FAILED **********")
-                  << std::endl;
+        // std::cout << "    ";
+        // if (testName != "")
+        // {
+        //     std::cout << "Test: "
+        //               << testName
+        //               << " - ";
+        // }
+        std::cout << (success ? ". " : "********** FAILED **********");
+        std::cout.flush();
+                //   << std::endl;
     }
 
     // ftest
@@ -837,7 +842,7 @@ void test_build_medium(Tester & t)
         test_build_single(t, w, e, cbs, ans,
                           "Greedy fails large");
     }
-    
+
     // All bridges available #1
     {
         w = 4;
@@ -999,9 +1004,16 @@ void test_build(Tester & t)
 {
     // Do all the test suites
     std::cout << "TEST SUITES FOR FUNCION build" << std::endl;
+    std::clock_t start;
+    double duration;
+
+    start = std::clock();
     test_build_tiny(t);
-    test_build_small(t);
-    test_build_medium(t);
+    // test_build_small(t);
+    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+
+    std::cout<<"Time taken: "<< duration <<'\n';
+    // test_build_medium(t);
 }
 
 
