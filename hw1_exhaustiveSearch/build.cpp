@@ -22,7 +22,7 @@ using Bridge = vector<int>;
 int build(int w, int e, const vector<Bridge> & bridges) {
     
     vector<int> combination(sizeof(bridges));
-    int max_possible_toll = 0;
+    int max_toll = 0;
     int temp = 0;
     
     vector<vector<int>> bad_bridge_combos;
@@ -35,12 +35,17 @@ int build(int w, int e, const vector<Bridge> & bridges) {
 
         if (b_valid_combo(combination, bridges, bad_bridge_combos)){
             temp = get_combo_value(combination, bridges);
-            if (temp > max_possible_toll)
-                max_possible_toll = temp;
+            if (temp > max_toll)
+                max_toll = temp;
         }
     }
-    return max_possible_toll;
+    return max_toll;
 }
+
+
+/**********************************************************
+ * Helper Functions for build
+ * ****************************************************/
 
 
 void fill_bad_combos_vector(std::vector<std::vector<int>> & bad_bridge_combos, const std::vector<Bridge> & bridges){
