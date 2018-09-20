@@ -21,23 +21,31 @@ int build(int w, int e, const vector<Bridge> & bridges) {
     int max_possible_toll = 0;
     int temp = 0;
     
+    vector<vector<int>> bad_bridge_combos;
+    // Initialize bad_bridge_combos
+    
     while (true) {
         
         // make next combination (binary +1)
         // validate bridges
 
-        if (b_valid_combo(combination, bridges)){
+        if (b_valid_combo(combination, bridges, bad_bridge_combos)){
             temp = get_combo_value(combination, bridges);
             if (temp > max_possible_toll)
                 max_possible_toll = temp;
         }
         if (b_finished(combination))
             break;
-    }
+        }
     return max_possible_toll;
 }
 
-bool b_valid_combo(const std::vector<int> & combination, const vector<Bridge> & bridges){
+bool b_valid_combo(const std::vector<int> & combination, const vector<Bridge> & bridges, 
+                    const vector<vector<int>> & bad_bridge_combos){
+    for (auto i : bad_bridge_combos) {
+        if (combination[i[0]]==1 && combination[i[1]] ==1) 
+            return false;
+    }
     return true;
 }
 
