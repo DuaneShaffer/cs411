@@ -1031,8 +1031,8 @@ int main()
     std::cout << std::endl;
 
     // Wait for user
-    std::cout << "Press ENTER to quit ";
-    while (std::cin.get() != '\n') ;
+    //std::cout << "Press ENTER to quit ";
+    //while (std::cin.get() != '\n') ;
 
     return 0;
 }
