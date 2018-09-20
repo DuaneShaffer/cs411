@@ -26,14 +26,19 @@ int build(int w, int e, const vector<Bridge> & bridges) {
         // make next combination (binary +1)
         // validate bridges
 
-        temp = get_combo_value(combination, bridges);
-        if (temp > max_possible_toll)
-            max_possible_toll = temp;
-
+        if (b_valid_combo(combination)){
+            temp = get_combo_value(combination, bridges);
+            if (temp > max_possible_toll)
+                max_possible_toll = temp;
+        }
         if (b_finished(combination))
             break;
     }
     return max_possible_toll;
+}
+
+bool b_valid_combo(const std::vector<int> & binaryNum){
+    return true;
 }
 
 int get_combo_value(const vector<int> & combination, const vector<Bridge> & bridges) {
