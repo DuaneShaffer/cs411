@@ -25,7 +25,6 @@ int build(int w, int e, const vector<Bridge> & bridges) {
         
         // make next combination (binary +1)
         // validate bridges
-        // determine if value is new max
 
         temp = get_combo_value(combination, bridges);
         if (temp > max_possible_toll)
