@@ -48,12 +48,14 @@ int BridgeTollMaximizer::get_max_toll_value() {
 }
 
 int BridgeTollMaximizer::_get_max_single_toll(const vector<Bridge> & bridges){
-    int temp = 0;
-    for(auto i : bridges) {
-        if(i[2] > temp)
-            temp = i[2];
+    int max = 0;
+    int tollVal = 2;
+
+    for(auto bridge : bridges) {
+        if(bridge[tollVal] > max)
+            max = bridge[tollVal];
     }
-    return temp;
+    return max;
 }
 
 void BridgeTollMaximizer::_fill_bad_combos_vector(){
@@ -73,16 +75,20 @@ void BridgeTollMaximizer::_fill_bad_combos_vector(){
 }
 
 bool BridgeTollMaximizer::_make_next_combo() {
+    // -- binary counter
     // counts up with binary numbers reversed
-            // 2^0 on the left and powers increasing to the right
+    // 2^0 on the left and powers increasing to the right
     for (int i = 0; i < _combination.size(); ++i) {
         if (_combination[i] == 0) {
             _combination[i] = 1;
             return true;
         }
-        if (i == _combination.size()-1)
+        /* If we didn't return true and we're at the last bit then
+            we are trying to increment a combo of all 1's.. We're done */
+        else if (i == _combination.size()-1)  
             return false;
-        _combination[i] = 0;
+        else // need to carry. Set current bit 0 and loop again
+            _combination[i] = 0;
     }
 }
 
