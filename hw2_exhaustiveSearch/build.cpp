@@ -32,17 +32,12 @@ int build(int w, int e, const vector<Bridge> & bridges) {
 
 int BridgeTollMaximizer::get_max_toll_value() {
     int temp = 0;
-
-    while (true) {
-        
-        if (!_make_next_combo())
-            break;
+    
+    while (_make_next_combo()) {
 
         temp = _get_combo_value();
         if (temp > _max_toll)
-            if (_b_valid_combo()){
-                _max_toll = temp;
-            }
+            _max_toll = temp;
     }
     return _max_toll;
 }
@@ -81,7 +76,7 @@ bool BridgeTollMaximizer::_make_next_combo() {
     for (unsigned int i = 0; i < _combination.size(); ++i) {
         if (_combination[i] == 0) {
             _combination[i] = 1;
-            break;
+                break;
         }
         /* If we didn't return true and we're at the last bit then
             we are trying to increment a combo of all 1's.. We're done */
@@ -90,7 +85,10 @@ bool BridgeTollMaximizer::_make_next_combo() {
         else // need to carry. Set current bit 0 and loop again
             _combination[i] = 0;
     }
-    return true;
+    if (_b_valid_combo())
+        return true;
+    else
+        return _make_next_combo();
 }
 
 bool BridgeTollMaximizer::_b_valid_combo(){
