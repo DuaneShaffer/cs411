@@ -32,11 +32,8 @@ int build(int w, int e, const vector<Bridge> & bridges) {
 
 int BridgeTollMaximizer::get_max_toll_value() {
     int temp = 0;
-
-    while (true) {
-        
-        if (!_make_next_combo())
-            break;
+    
+    while (_make_next_combo()) {
 
         temp = _get_combo_value();
         if (temp > _max_toll)
