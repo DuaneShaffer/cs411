@@ -20,34 +20,34 @@ using std::endl;
 using Bridge = vector<int>;
 
 int build(int w, int e, const vector<Bridge> & bridges) {
-    
-    vector<int> combination(sizeof(bridges));
-    int max_toll = get_max_single_toll(bridges);
-    int temp = 0;
-    
-    vector<vector<int>> bad_bridge_combos(bridges.size());
-    fill_bad_combos_vector(bad_bridge_combos, bridges);
+    BridgeTollMaximizer btm(bridges);
+    return btm.get_max_toll_value();
 
-    while (true) {
-        
-        if (!make_next_combo(combination))
-            break;
-
-        temp = get_combo_value(combination, bridges);
-        if (temp > max_toll)
-            if (b_valid_combo(combination, bad_bridge_combos)){
-                max_toll = temp;
-            }
-    }
-    return max_toll;
 }
 
 
 /**********************************************************
- * Helper Functions for build
+ * Functions for class BridgeTollMaximizer
  * ****************************************************/
 
-int get_max_single_toll(const vector<Bridge> & bridges){
+int BridgeTollMaximizer::get_max_toll_value() {
+    int temp = 0;
+
+    while (true) {
+        
+        if (!_make_next_combo())
+            break;
+
+        temp = _get_combo_value();
+        if (temp > _max_toll)
+            if (_b_valid_combo()){
+                _max_toll = temp;
+            }
+    }
+    return _max_toll;
+}
+
+int BridgeTollMaximizer::_get_max_single_toll(const vector<Bridge> & bridges){
     int temp = 0;
     for(auto i : bridges) {
         if(i[2] > temp)
@@ -56,49 +56,53 @@ int get_max_single_toll(const vector<Bridge> & bridges){
     return temp;
 }
 
-void fill_bad_combos_vector(std::vector<vector<int>> & bad_bridge_combos, const vector<Bridge> & bridges){
+void BridgeTollMaximizer::_fill_bad_combos_vector(){
     int leftSide = 0;
     int rightSide = 1;
 
-    for (int i=0; i < bridges.size(); ++i){
-        for (int j=i+1; j < bridges.size(); ++j) {
-            if (((bridges[i][leftSide]<=bridges[j][leftSide] && bridges[i][rightSide] >= bridges[j][rightSide])) || 
-                ((bridges[i][leftSide]>=bridges[j][leftSide] && bridges[i][rightSide] <= bridges[j][rightSide]))){
-                bad_bridge_combos[i].push_back(j);
+    for (int i=0; i < _bridges.size(); ++i){
+        for (int j=i+1; j < _bridges.size(); ++j) {
+            if (((_bridges[i][leftSide]<=_bridges[j][leftSide] && 
+                    _bridges[i][rightSide] >= _bridges[j][rightSide])) || 
+                ((_bridges[i][leftSide]>=_bridges[j][leftSide] && 
+                    _bridges[i][rightSide] <= _bridges[j][rightSide]))){
+                _bad_bridge_combos[i].push_back(j);
                 }
         }
     }
 }
 
-bool make_next_combo(vector<int> & combos) {
+bool BridgeTollMaximizer::_make_next_combo() {
     // counts up with binary numbers reversed
             // 2^0 on the left and powers increasing to the right
-    for (int i = 0; i < combos.size(); ++i) {
-        if (combos[i] == 0) {
-            combos[i] = 1;
+    for (int i = 0; i < _combination.size(); ++i) {
+        if (_combination[i] == 0) {
+            _combination[i] = 1;
             return true;
         }
-        if (i == combos.size()-1)
+        if (i == _combination.size()-1)
             return false;
-        combos[i] = 0;
+        _combination[i] = 0;
     }
 }
 
-bool b_valid_combo(const vector<int> & combination, const vector<vector<int>> & bad_bridge_combos){
-    for (int i = 0; i < bad_bridge_combos.size(); ++i) {
-        for (int j = 0; j < bad_bridge_combos[i].size(); ++j){
-            if (combination[i] == 1 && combination[bad_bridge_combos[i][j]] == 1) 
+bool BridgeTollMaximizer::_b_valid_combo(){
+    for (int i = 0; i < _bad_bridge_combos.size(); ++i) {
+        for (int j = 0; j < _bad_bridge_combos[i].size(); ++j){
+            if (_combination[i] == 1 && _combination[_bad_bridge_combos[i][j]] == 1) 
                 return false;
         }
     }
     return true;
 }
 
-int get_combo_value(const vector<int> & combination, const vector<Bridge> & bridges) {
-    int temp = 0;
-    for (int i = 0; i < bridges.size(); ++i) {
-        if (combination[i] == 1)
-            temp += bridges[i][2];
+int BridgeTollMaximizer::_get_combo_value() {
+    int cumulativeToll = 0;
+    int tollVal = 2;
+
+    for (int i = 0; i < _bridges.size(); ++i) {
+        if (_combination[i] == 1)
+            cumulativeToll += _bridges[i][tollVal];
     }
-    return temp;
+    return cumulativeToll;
 }
