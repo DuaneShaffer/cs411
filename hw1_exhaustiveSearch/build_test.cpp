@@ -1006,7 +1006,7 @@ void test_build(Tester & t)
     std::cout << "TEST SUITES FOR FUNCION build" << std::endl;
     std::clock_t start;
     double duration;
-
+    std::cout << "Excess output has been squashed. Uncomment the block at line 89 to view it." << std::endl;
     start = std::clock();
     test_build_tiny(t);
     std::cout << std::endl;
