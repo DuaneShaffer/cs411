@@ -24,11 +24,10 @@ int build(int w, int e, const std::vector<Bridge> & bridges);
 class BridgeTollMaximizer {
 public:
     BridgeTollMaximizer(const std::vector<Bridge> & bridges):
-                                        // _combination(sizeof(bridges)),
-                                        // _max_toll(_get_max_single_toll(bridges)),
-                                        _bridges(bridges){
-        _combination = std::vector<int>(sizeof(bridges));
-        _max_toll = (_get_max_single_toll(bridges));
+                                        _combination(sizeof(bridges)),
+                                        _max_toll(_get_max_single_toll(bridges)),
+                                        _bridges(bridges),
+                                        _bad_bridge_combos(bridges.size()){
         _fill_bad_combos_vector();
     }
 
