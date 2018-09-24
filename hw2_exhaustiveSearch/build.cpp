@@ -70,7 +70,24 @@ void BridgeTollMaximizer::_fill_bad_combos_vector(){
 }
 
 void BridgeTollMaximizer::_fill_good_combos_vector(){
-    
+    // Use std::iota to clean this up
+    for (unsigned int i = 0; i < _good_bridge_combos.size(); ++i) {
+        for (unsigned int j = 1; j < _good_bridge_combos.size()-i; ++j) {
+            _good_bridge_combos[i].push_back(i+j);
+        }
+    }
+    _output_vector();
+}
+
+void BridgeTollMaximizer::_output_vector(){
+    for (unsigned int i = 0; i < _good_bridge_combos.size(); ++i) {
+        std::cout << std::endl;
+        std::cout << "* " << i << " - ";
+        for (unsigned int j = 0; j < _good_bridge_combos[i].size(); ++j) {
+            std::cout << _good_bridge_combos[i][j] << " ";
+        }
+    }
+    std::cout << endl;
 }
 
 bool BridgeTollMaximizer::_make_next_combo() {
