@@ -37,17 +37,6 @@ int BridgeTollMaximizer::get_max_toll_value() {
     return _max_toll;
 }
 
-int BridgeTollMaximizer::_get_max_single_toll(const vector<Bridge> & bridges){
-    int max = 0;
-    int tollVal = 2;
-
-    for(auto bridge : bridges) {
-        if(bridge[tollVal] > max)
-            max = bridge[tollVal];
-    }
-    return max;
-}
-
 void BridgeTollMaximizer::_fill_bad_combos_vector(){
     int leftSide = 0;
     int rightSide = 1;

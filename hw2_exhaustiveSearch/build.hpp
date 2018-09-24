@@ -24,7 +24,7 @@ class BridgeTollMaximizer {
 public:
     BridgeTollMaximizer(const std::vector<Bridge> & bridges):
                                         _combination(sizeof(bridges)),
-                                        _max_toll(_get_max_single_toll(bridges)),
+                                        _max_toll(0),
                                         _bridges(bridges),
                                         _bad_bridge_combos(bridges.size()),
                                         _good_bridge_combos(bridges.size()){
@@ -42,7 +42,6 @@ private:
     std::vector<std::vector<int>> _bad_bridge_combos;
     std::vector<std::vector<int>> _good_bridge_combos;
 
-    int _get_max_single_toll(const std::vector<Bridge> & bridges);
     void _fill_bad_combos_vector();
     void _calculate_tolls_recursive(unsigned int slot = 0);
     bool _b_valid_combo();
