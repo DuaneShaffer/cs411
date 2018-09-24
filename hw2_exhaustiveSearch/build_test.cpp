@@ -1003,7 +1003,7 @@ void test_build_medium(Tester & t)
 void test_build(Tester & t)
 {
     // Do all the test suites
-    std::cout << "TEST SUITES FOR FUNCION build" << std::endl;
+    std::cout << "TEST SUITES FOR FUNCTION build" << std::endl;
     std::clock_t start;
     double duration;
     std::cout << "Excess output has been squashed. Uncomment the block at line 89 to view it." << std::endl;

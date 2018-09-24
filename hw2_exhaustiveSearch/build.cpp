@@ -16,6 +16,8 @@ using std::vector;
 using std::cout;
 using std::endl;
 
+#include <algorithm>
+using std::find;
 
 using Bridge = vector<int>;
 
@@ -31,26 +33,8 @@ int build(int w, int e, const vector<Bridge> & bridges) {
  * ****************************************************/
 
 int BridgeTollMaximizer::get_max_toll_value() {
-    int temp = 0;
-    
-    while (_make_next_combo()) {
-
-        temp = _get_combo_value();
-        if (temp > _max_toll)
-            _max_toll = temp;
-    }
+    _calculate_tolls_recursive();
     return _max_toll;
-}
-
-int BridgeTollMaximizer::_get_max_single_toll(const vector<Bridge> & bridges){
-    int max = 0;
-    int tollVal = 2;
-
-    for(auto bridge : bridges) {
-        if(bridge[tollVal] > max)
-            max = bridge[tollVal];
-    }
-    return max;
 }
 
 void BridgeTollMaximizer::_fill_bad_combos_vector(){
@@ -69,26 +53,21 @@ void BridgeTollMaximizer::_fill_bad_combos_vector(){
     }
 }
 
-bool BridgeTollMaximizer::_make_next_combo() {
-    // -- binary counter
-    // counts up with binary numbers reversed
-    // 2^0 on the left and powers increasing to the right
-    for (unsigned int i = 0; i < _combination.size(); ++i) {
-        if (_combination[i] == 0) {
-            _combination[i] = 1;
-                break;
-        }
-        /* If we didn't return true and we're at the last bit then
-            we are trying to increment a combo of all 1's.. We're done */
-        else if (i == _combination.size()-1)  
-            return false;
-        else // need to carry. Set current bit 0 and loop again
-            _combination[i] = 0;
+void BridgeTollMaximizer::_calculate_tolls_recursive(unsigned int slot) {
+    if (slot == _good_bridge_combos.size()) {
+        auto temp = _get_combo_value();
+        if (temp > _max_toll)
+            _max_toll = temp;
+        return;
     }
-    if (_b_valid_combo())
-        return true;
-    else
-        return _make_next_combo();
+    if (_combination[slot] == 0) {
+        _combination[slot] = 1;
+        if (_b_valid_combo())
+            _calculate_tolls_recursive(slot+1);
+        _combination[slot] = 0;
+    }
+    _calculate_tolls_recursive(slot+1);
+
 }
 
 bool BridgeTollMaximizer::_b_valid_combo(){
