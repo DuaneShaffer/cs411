@@ -45,7 +45,6 @@ private:
     int _get_max_single_toll(const std::vector<Bridge> & bridges);
     void _fill_bad_combos_vector();
     void _calculate_tolls_recursive(unsigned int slot = 0);
-    bool _make_next_combo();
     bool _b_valid_combo();
     int _get_combo_value();    
 };

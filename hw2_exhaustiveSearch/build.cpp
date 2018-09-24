@@ -64,28 +64,6 @@ void BridgeTollMaximizer::_fill_bad_combos_vector(){
     }
 }
 
-bool BridgeTollMaximizer::_make_next_combo() {
-    // // -- binary counter
-    // // counts up with binary numbers reversed
-    // // 2^0 on the left and powers increasing to the right
-    for (unsigned int i = 0; i < _combination.size(); ++i) {
-        if (_combination[i] == 0) {
-            _combination[i] = 1;
-                break;
-        }
-        /* If we didn't return true and we're at the last bit then
-            we are trying to increment a combo of all 1's.. We're done */
-        else if (i == _combination.size()-1)  
-            return false;
-        else // need to carry. Set current bit 0 and loop again
-            _combination[i] = 0;
-    }
-    if (_b_valid_combo())
-        return true;
-    else
-        return _make_next_combo();
-}
-
 void BridgeTollMaximizer::_calculate_tolls_recursive(unsigned int slot) {
     if (slot == _good_bridge_combos.size()) {
         auto temp = _get_combo_value();
