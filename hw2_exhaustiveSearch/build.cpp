@@ -69,6 +69,10 @@ void BridgeTollMaximizer::_fill_bad_combos_vector(){
     }
 }
 
+void BridgeTollMaximizer::_fill_good_combos_vector(){
+    
+}
+
 bool BridgeTollMaximizer::_make_next_combo() {
     // -- binary counter
     // counts up with binary numbers reversed

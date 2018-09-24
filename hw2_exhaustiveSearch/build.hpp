@@ -29,6 +29,7 @@ public:
                                         _bridges(bridges),
                                         _bad_bridge_combos(bridges.size()){
         _fill_bad_combos_vector();
+        _fill_good_combos_vector();
     }
 
     ~BridgeTollMaximizer() = default;
@@ -40,6 +41,7 @@ private:
     int _max_toll;    
     const std::vector<Bridge> & _bridges;
     std::vector<std::vector<int>> _bad_bridge_combos;
+    std::vector<std::vector<int>> _good_bridge_combos;
 
     int _get_max_single_toll(const std::vector<Bridge> & bridges);
     void _fill_bad_combos_vector();
