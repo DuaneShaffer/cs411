@@ -85,7 +85,6 @@ void BridgeTollMaximizer::_fill_good_combos_vector(){
                                             _bad_bridge_combos[i][j]));
         }
     }
-    _output_vector();
 }
 
 void BridgeTollMaximizer::_output_vector(){
