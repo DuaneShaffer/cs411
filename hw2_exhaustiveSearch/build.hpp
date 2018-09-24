@@ -11,7 +11,6 @@
 
 #include <vector>
 
-
 /* A bridge represents a size 3 vector with:
     * [0] = west-bank city
     * [1] = east-bank city
@@ -30,7 +29,6 @@ public:
                                         _bad_bridge_combos(bridges.size()),
                                         _good_bridge_combos(bridges.size()){
         _fill_bad_combos_vector();
-        _fill_good_combos_vector();
     }
 
     ~BridgeTollMaximizer() = default;
@@ -46,8 +44,7 @@ private:
 
     int _get_max_single_toll(const std::vector<Bridge> & bridges);
     void _fill_bad_combos_vector();
-    void _fill_good_combos_vector();
-    void _output_vector();
+    void _calculate_tolls_recursive(unsigned int slot = 0);
     bool _make_next_combo();
     bool _b_valid_combo();
     int _get_combo_value();    

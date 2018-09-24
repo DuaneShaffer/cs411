@@ -33,14 +33,7 @@ int build(int w, int e, const vector<Bridge> & bridges) {
  * ****************************************************/
 
 int BridgeTollMaximizer::get_max_toll_value() {
-    int temp = 0;
-    
-    while (_make_next_combo()) {
-
-        temp = _get_combo_value();
-        if (temp > _max_toll)
-            _max_toll = temp;
-    }
+    _calculate_tolls_recursive();
     return _max_toll;
 }
 
@@ -71,37 +64,10 @@ void BridgeTollMaximizer::_fill_bad_combos_vector(){
     }
 }
 
-void BridgeTollMaximizer::_fill_good_combos_vector(){
-    // Use std::iota to clean this up
-    for (unsigned int i = 0; i < _good_bridge_combos.size(); ++i) {
-        for (unsigned int j = 1; j < _good_bridge_combos.size()-i; ++j) {
-            _good_bridge_combos[i].push_back(i+j);
-        }
-    }
-    for (unsigned int i = 0; i < _bad_bridge_combos.size(); ++i) {
-        for (unsigned int j = 0; j < _bad_bridge_combos[i].size(); ++j) {
-            _good_bridge_combos[i].erase(find(_good_bridge_combos[i].begin(),
-                                            _good_bridge_combos[i].end(),
-                                            _bad_bridge_combos[i][j]));
-        }
-    }
-}
-
-void BridgeTollMaximizer::_output_vector(){
-    for (unsigned int i = 0; i < _good_bridge_combos.size(); ++i) {
-        std::cout << std::endl;
-        std::cout << "* " << i << " - ";
-        for (unsigned int j = 0; j < _good_bridge_combos[i].size(); ++j) {
-            std::cout << _good_bridge_combos[i][j] << " ";
-        }
-    }
-    std::cout << endl;
-}
-
 bool BridgeTollMaximizer::_make_next_combo() {
-    // -- binary counter
-    // counts up with binary numbers reversed
-    // 2^0 on the left and powers increasing to the right
+    // // -- binary counter
+    // // counts up with binary numbers reversed
+    // // 2^0 on the left and powers increasing to the right
     for (unsigned int i = 0; i < _combination.size(); ++i) {
         if (_combination[i] == 0) {
             _combination[i] = 1;
@@ -118,6 +84,23 @@ bool BridgeTollMaximizer::_make_next_combo() {
         return true;
     else
         return _make_next_combo();
+}
+
+void BridgeTollMaximizer::_calculate_tolls_recursive(unsigned int slot) {
+    if (slot == _good_bridge_combos.size()) {
+        auto temp = _get_combo_value();
+        if (temp > _max_toll)
+            _max_toll = temp;
+        return;
+    }
+    if (_combination[slot] == 0) {
+        _combination[slot] = 1;
+        if (_b_valid_combo())
+            _calculate_tolls_recursive(slot+1);
+        _combination[slot] = 0;
+    }
+    _calculate_tolls_recursive(slot+1);
+
 }
 
 bool BridgeTollMaximizer::_b_valid_combo(){
