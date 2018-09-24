@@ -16,6 +16,8 @@ using std::vector;
 using std::cout;
 using std::endl;
 
+#include <algorithm>
+using std::find;
 
 using Bridge = vector<int>;
 
@@ -74,6 +76,13 @@ void BridgeTollMaximizer::_fill_good_combos_vector(){
     for (unsigned int i = 0; i < _good_bridge_combos.size(); ++i) {
         for (unsigned int j = 1; j < _good_bridge_combos.size()-i; ++j) {
             _good_bridge_combos[i].push_back(i+j);
+        }
+    }
+    for (unsigned int i = 0; i < _bad_bridge_combos.size(); ++i) {
+        for (unsigned int j = 0; j < _bad_bridge_combos[i].size(); ++j) {
+            _good_bridge_combos[i].erase(find(_good_bridge_combos[i].begin(),
+                                            _good_bridge_combos[i].end(),
+                                            _bad_bridge_combos[i][j]));
         }
     }
     _output_vector();
