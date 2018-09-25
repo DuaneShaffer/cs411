@@ -38,22 +38,22 @@ int BridgeTollMaximizer::get_max_toll_value() {
 }
 
 void BridgeTollMaximizer::_fill_bad_combos_vector(){
-    int leftSide = 0;
-    int rightSide = 1;
+    int LEFTSIDE = 0;
+    int RIGHTSIDE = 1;
 
     for (unsigned int i=0; i < _bridges.size(); ++i){
         for (unsigned int j=i+1; j < _bridges.size(); ++j) {
-            if (((_bridges[i][leftSide]<=_bridges[j][leftSide] && 
-                    _bridges[i][rightSide] >= _bridges[j][rightSide])) || 
-                ((_bridges[i][leftSide]>=_bridges[j][leftSide] && 
-                    _bridges[i][rightSide] <= _bridges[j][rightSide]))){
+            if (((_bridges[i][LEFTSIDE]<=_bridges[j][LEFTSIDE] && 
+                    _bridges[i][RIGHTSIDE] >= _bridges[j][RIGHTSIDE])) || 
+                ((_bridges[i][LEFTSIDE]>=_bridges[j][LEFTSIDE] && 
+                    _bridges[i][RIGHTSIDE] <= _bridges[j][RIGHTSIDE]))){
                 _bad_bridge_combos[i].push_back(j);
                 }
         }
     }
 }
 
-void BridgeTollMaximizer::_calculate_tolls_recursive(unsigned int slot) {
+void BridgeTollMaximizer::_calculate_tolls_recursive(unsigned int slot) { // slot = 0
     if (slot == _good_bridge_combos.size()) {
         auto temp = _get_combo_value();
         if (temp > _max_toll)
@@ -82,11 +82,11 @@ bool BridgeTollMaximizer::_b_valid_combo(){
 
 int BridgeTollMaximizer::_get_combo_value() {
     int cumulativeToll = 0;
-    int tollVal = 2;
+    int TOLLVAL = 2;
 
     for (unsigned int i = 0; i < _bridges.size(); ++i) {
         if (_combination[i] == 1)
-            cumulativeToll += _bridges[i][tollVal];
+            cumulativeToll += _bridges[i][TOLLVAL];
     }
     return cumulativeToll;
 }
