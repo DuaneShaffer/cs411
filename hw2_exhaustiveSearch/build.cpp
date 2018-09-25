@@ -43,7 +43,7 @@ void BridgeTollMaximizer::_fill_bad_combos_vector(){
 
     for (unsigned int i=0; i < _bridges.size(); ++i){
         for (unsigned int j=i+1; j < _bridges.size(); ++j) {
-            // if (bridges_cross) *see readme
+            // if (bridges_cross) *see comment below
             if (((_bridges[i][LEFTSIDE]<=_bridges[j][LEFTSIDE] && 
                     _bridges[i][RIGHTSIDE] >= _bridges[j][RIGHTSIDE])) || 
                 ((_bridges[i][LEFTSIDE]>=_bridges[j][LEFTSIDE] && 
@@ -53,6 +53,8 @@ void BridgeTollMaximizer::_fill_bad_combos_vector(){
         }
     }
 }
+// The compiler -03 can't speed up this if statement if it's broken into its own function.
+//     therefore, I left it as it is.
 
 void BridgeTollMaximizer::_calculate_tolls_recursive(unsigned int slot) { // slot = 0
     if (slot == _combination.size()) {
