@@ -84,9 +84,9 @@ int BridgeTollMaximizer::_get_combo_value() {
     int cumulativeToll = 0;
     int TOLLVAL = 2;
 
-    for (unsigned int i = 0; i < _bridges.size(); ++i) {
-        if (_combination[i] == 1)
-            cumulativeToll += _bridges[i][TOLLVAL];
+    for (unsigned int bridge = 0; bridge < _bridges.size(); ++bridge) {
+        if (_combination[bridge] == 1)
+            cumulativeToll += _bridges[bridge][TOLLVAL];
     }
     return cumulativeToll;
 }
