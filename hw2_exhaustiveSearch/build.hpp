@@ -26,8 +26,7 @@ public:
                                         _combination(sizeof(bridges)),
                                         _max_toll(0),
                                         _bridges(bridges),
-                                        _bad_bridge_combos(bridges.size()),
-                                        _good_bridge_combos(bridges.size()){
+                                        _bad_bridge_combos(bridges.size()){
         _fill_bad_combos_vector();
     }
 
@@ -40,7 +39,6 @@ private:
     int _max_toll;    
     const std::vector<Bridge> & _bridges;
     std::vector<std::vector<int>> _bad_bridge_combos;
-    std::vector<std::vector<int>> _good_bridge_combos;
 
     void _fill_bad_combos_vector();
     void _calculate_tolls_recursive(unsigned int slot = 0);
