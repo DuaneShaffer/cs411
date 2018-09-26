@@ -54,7 +54,7 @@ void BridgeTollMaximizer::_fill_bad_combos_vector(){
     }
 }
 // The compiler -03 can't speed up this if statement if it's broken into its own function.
-//     therefore, I left it as it is.
+//     Therefore, I left it as it is.
 
 void BridgeTollMaximizer::_calculate_tolls_recursive(unsigned int slot) { // slot = 0
 
