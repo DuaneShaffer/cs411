@@ -57,7 +57,9 @@ void BridgeTollMaximizer::_fill_bad_combos_vector(){
 //     therefore, I left it as it is.
 
 void BridgeTollMaximizer::_calculate_tolls_recursive(unsigned int slot) { // slot = 0
-    if (slot == _combination.size()) {
+
+    auto combination_end = _bridges.size();
+    if (slot == combination_end) {
         auto temp = _get_combo_value();
         if (temp > _max_toll)
             _max_toll = temp;
