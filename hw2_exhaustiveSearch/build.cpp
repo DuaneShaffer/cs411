@@ -10,14 +10,6 @@
 
 #include <vector>
 using std::vector;
-#include <stdexcept>
-
-#include <iostream>
-using std::cout;
-using std::endl;
-
-#include <algorithm>
-using std::find;
 
 using Bridge = vector<int>;
 
