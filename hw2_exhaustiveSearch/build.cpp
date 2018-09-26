@@ -35,7 +35,7 @@ void BridgeTollMaximizer::_fill_bad_combos_vector(){
 
     for (unsigned int i=0; i < _bridges.size(); ++i){
         for (unsigned int j=i+1; j < _bridges.size(); ++j) {
-            // if (bridges_cross) *see comment below
+            // if (bridges_cross)   *see comment below
             if (((_bridges[i][LEFTSIDE]<=_bridges[j][LEFTSIDE] && 
                     _bridges[i][RIGHTSIDE] >= _bridges[j][RIGHTSIDE])) || 
                 ((_bridges[i][LEFTSIDE]>=_bridges[j][LEFTSIDE] && 
