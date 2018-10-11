@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="hw2" targetName="file.out" />
+      <config projectName="hw3" targetName="file.out" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -11,7 +11,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="95aecc50-6dbd-4de4-bde9-480ca1b1e713" name="Default Changelist" comment="" />
+    <list default="true" id="95aecc50-6dbd-4de4-bde9-480ca1b1e713" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,19 +61,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contigsum_test.cpp">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="68">
-                <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-              </first_editor>
-              <second_editor />
+        <entry file="file://$PROJECT_DIR$/contigsum_test.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -108,7 +104,7 @@
         <subPane>
           <expand>
             <path>
-              <item name="hw2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hw3" type="b2602c69:ProjectViewProjectNode" />
               <item name="hw3_contiguousSum" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -140,7 +136,7 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="file.out" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="hw2" TARGET_NAME="file.out" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="hw2" RUN_TARGET_NAME="file.out">
+    <configuration name="file.out" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="hw3" TARGET_NAME="file.out" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="hw3" RUN_TARGET_NAME="file.out">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -162,18 +158,17 @@
       <updated>1539282178659</updated>
       <workItem from="1539282182447" duration="486000" />
       <workItem from="1539282692588" duration="179000" />
-      <workItem from="1539282923272" duration="59000" />
+      <workItem from="1539282923272" duration="558000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="724000" />
+    <option name="totallyTimeSpent" value="1223000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1293" height="693" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25101215" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12874494" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -201,9 +196,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/contigsum_test.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -214,6 +206,13 @@
         </state>
       </provider>
       <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contigsum_test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
