@@ -3,10 +3,10 @@
 // CS411
 // 10/11/2018
 
-#ifndef HW3_CONTIGSUM_HPP
-#define HW3_CONTIGSUM_HPP
+#ifndef CONTIGSUM_HPP
+#define CONTIGSUM_HPP
 
 
 
 
-#endif //HW3_CONTIGSUM_HPP
+#endif //CONTIGSUM_HPP
