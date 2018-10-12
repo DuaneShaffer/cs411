@@ -10,10 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4836585-10bb-4f98-869b-7503ee565384" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ExerciseA/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../ExerciseA/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ExerciseA/contigsum.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/../ExerciseA/contigsum.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

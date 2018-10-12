@@ -14,7 +14,7 @@ struct GCS{
     int total = 0;
 };
 
-GCS merge(GCS & left, GCS & right){
+const GCS merge(const GCS & left, const GCS & right){
     GCS mergedGCS;
     mergedGCS.gcs = std::max({left.gcs, right.gcs, (left.sumLast + right.sumFirst)});
     mergedGCS.sumFirst = std::max(left.sumFirst, left.total + right.sumFirst);
@@ -25,7 +25,7 @@ GCS merge(GCS & left, GCS & right){
 }
 
 template<typename RAIter>
-GCS gcsRecurse(RAIter first, RAIter last){
+const GCS gcsRecurse(const RAIter first, const RAIter last){
     GCS gcs;
 
     if(distance(first, last) == 1){
@@ -47,7 +47,7 @@ GCS gcsRecurse(RAIter first, RAIter last){
 
 
 template<typename RAIter>
-int contigSum(RAIter first, RAIter last) {
+int contigSum(const RAIter first, const RAIter last) {
     if(distance(first,last) == 0){
         return 0;
     }
