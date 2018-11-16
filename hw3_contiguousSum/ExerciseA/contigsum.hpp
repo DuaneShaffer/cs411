@@ -7,33 +7,33 @@
 #ifndef CONTIGSUM_HPP
 #define CONTIGSUM_HPP
 
-struct GCS{
-    int gcs = 0;
-    int sumFirst = 0;
-    int sumLast = 0;
-    int total = 0;
+struct GCS_Container{
+    int greatestContinuousSum = 0;
+    int sumWithFirstElement = 0;
+    int sumWithLastElement = 0;
+    int totalOfAllElements = 0;
 };
 
-const GCS merge(const GCS & left, const GCS & right){
-    GCS mergedGCS;
-    mergedGCS.gcs = std::max({left.gcs, right.gcs, (left.sumLast + right.sumFirst)});
-    mergedGCS.sumFirst = std::max(left.sumFirst, left.total + right.sumFirst);
-    mergedGCS.sumLast = std::max(right.sumLast, right.total + left.sumLast);
-    mergedGCS.total = right.total + left.total;
-    return mergedGCS;
+const GCS_Container merge(const GCS_Container & l, const GCS_Container & r){
+    GCS_Container t;
+    t.greatestContinuousSum = std::max({l.greatestContinuousSum, r.greatestContinuousSum, (l.sumWithLastElement + r.sumWithFirstElement)});
+    t.sumWithFirstElement = std::max(l.sumWithFirstElement, l.totalOfAllElements + r.sumWithFirstElement);
+    t.sumWithLastElement = std::max(r.sumWithLastElement, r.totalOfAllElements + l.sumWithLastElement);
+    t.totalOfAllElements = r.totalOfAllElements + l.totalOfAllElements;
+    return t;
 
 }
 
 template<typename RAIter>
-const GCS gcsRecurse(const RAIter first, const RAIter last){
-    GCS gcs;
+const GCS_Container gcsRecurse(const RAIter first, const RAIter last){
 
     if(distance(first, last) == 1){
-        gcs.gcs = *first;
-        gcs.sumFirst = *first;
-        gcs.sumLast = *first;
-        gcs.total = *first;
-        return gcs;
+        GCS_Container base;
+        base.greatestContinuousSum = *first;
+        base.sumWithFirstElement = *first;
+        base.sumWithLastElement = *first;
+        base.totalOfAllElements = *first;
+        return base;
     }
 
     auto middle = first;
@@ -41,7 +41,7 @@ const GCS gcsRecurse(const RAIter first, const RAIter last){
     auto left_gcs = gcsRecurse(first, middle);
     auto right_gcs = gcsRecurse(middle, last);
 
-    return (merge(left_gcs, right_gcs));
+    return merge(left_gcs, right_gcs);
 
 }
 
@@ -52,7 +52,7 @@ int contigSum(const RAIter first, const RAIter last) {
         return 0;
     }
     auto gcsTest = gcsRecurse(first, last);
-    return std::max(gcsTest.gcs, 0);
+    return std::max(gcsTest.greatestContinuousSum, 0);
 }
 
 
