@@ -46,17 +46,19 @@ int build(int w, int e, const vector<Bridge> & bridges) {
     // Output the adjacency list
     // for (unsigned int i = 0; i < adj_list.size(); ++i) {
     //     cout << i << ": ";
-    //     for (auto j: adj_list[i]) {
-    //         cout << j[0] << " ";    
+    //     for (unsigned int j = 0; j < adj_list[i].size(); ++j) {
+    //         cout << adj_list[i][j][0] << " ";    
     //     }
     //     cout <<  endl;
     // }
 
-    int starting_row, starting_column;
+    int starting_row = -1;
+    int starting_column = -1;
     for (unsigned int i = 0; i < adj_list.size(); ++i) {
         if (!adj_list[i].empty()){
             starting_row = i;
             starting_column = adj_list[i][0][0];
+            break;
         }
     }
 
