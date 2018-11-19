@@ -24,7 +24,7 @@ int build(int w, int e, const vector<Bridge> & bridges) {
     auto bridges_copy = bridges;
 
     vector<vector<Bridge>> adj_list(w);
-    for (auto i: bridges) {
+    for (const auto & i: bridges) {
         adj_list[i[0]].push_back(Bridge{i[1],i[2],0});
     }
 
