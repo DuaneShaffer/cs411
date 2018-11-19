@@ -19,6 +19,14 @@ using Bridge = vector<int>;
 int build(int w, int e, const vector<Bridge> & bridges) {
     auto bridges_copy = bridges;
 
+    sort(bridges_copy.begin(),bridges_copy.end(), [](const Bridge & a, const Bridge & b) -> bool {
+        if (a[0] < b[0])
+            return true;
+        else if (a[0] == b[0])
+            return a[1] < b[1];
+        else
+            return false;
+    });
 
     return 0;
 
