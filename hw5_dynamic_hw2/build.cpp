@@ -21,11 +21,11 @@ using std::endl;
 using Bridge = vector<int>;
 
 int build(int w, int e, const vector<Bridge> & bridges) {
-    auto bridges_copy = bridges;
+    vector<int> bridgeSubProblemAnswers((w+1)*(e+1));
 
     vector<vector<Bridge>> adj_list(w);
     for (const auto & i: bridges) {
-        adj_list[i[0]].push_back(Bridge{i[1],i[2],0});
+        adj_list[i[0]].push_back(Bridge{i[1],i[2]});
     }
 
     for (auto & i: adj_list) {
@@ -43,6 +43,7 @@ int build(int w, int e, const vector<Bridge> & bridges) {
         });
     }
 
+    // Output the adjacency list
     // for (unsigned int i = 0; i < adj_list.size(); ++i) {
     //     cout << i << ": ";
     //     for (auto j: adj_list[i]) {
@@ -51,10 +52,13 @@ int build(int w, int e, const vector<Bridge> & bridges) {
     //     cout <<  endl;
     // }
 
-    int max = 0;
-    int tempmax = 0;
-    int row = bridges_copy[0][0];
-    int column = bridges_copy[0][0];
+    int starting_row, starting_column;
+    for (unsigned int i = 0; i < adj_list.size(); ++i) {
+        if (!adj_list[i].empty()){
+            starting_row = i;
+            starting_column = adj_list[i][0][0];
+        }
+    }
 
     return 0;
 
