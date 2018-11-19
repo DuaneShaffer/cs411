@@ -28,8 +28,8 @@ int build(int w, int e, const vector<Bridge> & bridges) {
         adj_list[i[0]].push_back(Bridge{i[1],i[2],0});
     }
 
-    for (unsigned int i = 0; i < adj_list.size(); ++i) {
-        sort(adj_list[i].begin(),adj_list[i].end(), [](const Bridge & a, const Bridge & b) -> bool {
+    for (auto & i: adj_list) {
+        sort(i.begin(),i.end(), [](const Bridge & a, const Bridge & b) -> bool {
             if (a[0] < b[0])
                 return true;
             else if (a[0] == b[0]) {
@@ -43,13 +43,13 @@ int build(int w, int e, const vector<Bridge> & bridges) {
         });
     }
 
-    for (unsigned int i = 0; i < adj_list.size(); ++i) {
-        cout << i << ": ";
-        for (auto j: adj_list[i]) {
-            cout << j[0] << " ";    
-        }
-        cout <<  endl;
-    }
+    // for (unsigned int i = 0; i < adj_list.size(); ++i) {
+    //     cout << i << ": ";
+    //     for (auto j: adj_list[i]) {
+    //         cout << j[0] << " ";    
+    //     }
+    //     cout <<  endl;
+    // }
 
     int max = 0;
     int tempmax = 0;
