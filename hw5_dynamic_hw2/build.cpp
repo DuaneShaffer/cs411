@@ -1,10 +1,10 @@
 // build.cpp
 // Duane Shaffer
-// 20 September 2018
+// 18 November 2018
 //
 // For CS 411 Fall 2018
-// Source file for exhaustive search algorithm
-// Used in HW 2
+// Source file for dynamic programming algorithm
+// Used in HW 5
 
 #include "build.hpp"
 
