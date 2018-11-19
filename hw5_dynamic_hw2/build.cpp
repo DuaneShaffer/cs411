@@ -11,10 +11,15 @@
 #include <vector>
 using std::vector;
 
+#include <algorithm>
+using std::sort;
+
 using Bridge = vector<int>;
 
 int build(int w, int e, const vector<Bridge> & bridges) {
-    BridgeTollMaximizer btm(bridges);
-    return btm.get_max_toll_value();
+    auto bridges_copy = bridges;
+
+
+    return 0;
 
 }
