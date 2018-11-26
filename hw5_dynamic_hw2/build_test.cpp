@@ -23,6 +23,9 @@
 // Additional includes for this test program
 #include <vector>       // for std::vector
 
+#include <cstdio>
+#include <ctime>
+
 
 // ************************************************************************
 // Testing Package:
@@ -80,15 +83,16 @@ public:
         ++countTests_;
         if (success) ++countPasses_;
 
-        std::cout << "    ";
-        if (testName != "")
-        {
-            std::cout << "Test: "
-                      << testName
-                      << " - ";
-        }
-        std::cout << (success ? "passed" : "********** FAILED **********")
-                  << std::endl;
+        // std::cout << "    ";
+        // if (testName != "")
+        // {
+        //     std::cout << "Test: "
+        //               << testName
+        //               << " - ";
+        // }
+        std::cout << (success ? ". " : "********** FAILED **********");
+        std::cout.flush();
+                //   << std::endl;
     }
 
     // ftest
@@ -1107,11 +1111,22 @@ void test_build_large(Tester & t)
 void test_build(Tester & t)
 {
     // Do all the test suites
-    std::cout << "TEST SUITES FOR FUNCION build" << std::endl;
+    std::cout << "TEST SUITES FOR FUNCTION build" << std::endl;
+    std::clock_t start;
+    double duration;
+    std::cout << "Excess output has been squashed. Uncomment the block at line 83 to view it." << std::endl;
+    start = std::clock();
     test_build_tiny(t);
+    std::cout << std::endl;
     test_build_small(t);
+    std::cout << std::endl;
     test_build_medium(t);
+    std::cout << std::endl;
     test_build_large(t);
+    std::cout << std::endl;
+
+    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    std::cout<<"Time taken: "<< duration <<'\n';
 }
 
 
