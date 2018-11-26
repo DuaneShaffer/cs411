@@ -45,16 +45,6 @@ int build(int w, int e, const vector<Bridge> & bridges) {
         });
     }
 
-    
-    // Output the adjacency list
-    // for (unsigned int i = 0; i < adj_list.size(); ++i) {
-    //     cout << i << ": ";
-    //     for (unsigned int j = 0; j < adj_list[i].size(); ++j) {
-    //         cout << adj_list[i][j][0] << " ";    
-    //     }
-    //     cout <<  endl;
-    // }
-
     int starting_row = -1;
     int starting_column = -1;
     for (unsigned int i = 0; i < adj_list.size(); ++i) {
@@ -73,18 +63,11 @@ int build(int w, int e, const vector<Bridge> & bridges) {
     for (unsigned int i = starting_row; i < adj_list.size(); ++i) {
         for (unsigned int j = 0; j < adj_list[i].size(); ++j) {
             if (adj_list[i][j][0] <= starting_column) {
-                // if (adj_list[i][j][2] == 1) {
-                    // The current bridge is a possible starting point.
-                    // Do calculations with it.
-                    
-                    // cout << "Column: " << adj_list[i][j][0] << endl;
-                    temp = solve_subproblem_recursive(adj_list, bridgeSubProblemAnswers, (int)i, (int)j, e);
-                    if (temp > max)
-                        max = temp;
-                        
-                // }
-                // else
-                    // break;
+                // The current bridge is a possible starting point.
+                // Do calculations with it.
+                temp = solve_subproblem_recursive(adj_list, bridgeSubProblemAnswers, (int)i, (int)j, e);
+                if (temp > max)
+                    max = temp;
             }
             else 
                 break;
@@ -99,40 +82,26 @@ int solve_subproblem_recursive(const vector<vector<Bridge>> & adj_list, vector<i
     
     // Make an if statement for if the chosen bridge at i,j has been solved
     if (subproblem_answers.at(i*east_cities+adj_list[i][j][0]) != 0) {
-        // cout << "Looking for: " << i*east_cities+adj_list[i][j][0] << endl;
         return subproblem_answers.at(i*east_cities+adj_list[i][j][0]);
         }
-    // cout << "Solving subproblem: " << i << ", " << j << endl;
 
     // Take diag and do things
     int currentMax = adj_list[i][j][1];
     int takeDiagMax = 0;
     for (auto i_copy = i+1 ; i_copy < (int)adj_list.size(); ++i_copy) {
-        // cout << "First loop i: " << i_copy << endl;
         for (unsigned int columns = 0; columns < adj_list[i_copy].size(); ++columns ) {
-            // cout << "second loop i: " << i_copy << endl;
-            if (adj_list[i_copy][columns][0] > adj_list[i][j][0] && i_copy < adj_list.size()) {
+            if (adj_list[i_copy][columns][0] > adj_list[i][j][0] && i_copy < (int)adj_list.size()) {
                 takeDiagMax = max(takeDiagMax, solve_subproblem_recursive(adj_list, subproblem_answers, i_copy, columns, east_cities));
-                // cout << "third loop i: " << i_copy << endl;
             }
         }
-        // for (auto bridges: adj_list[i_copy]) {
-        //     cout << "second loop i: " << i_copy << endl;
-        //     if (bridges[0] > adj_list[i][j][0]) {
-        //         takeDiagMax = max(takeDiagMax, solve_subproblem_recursive(adj_list, subproblem_answers, i_copy+1, bridges[0]));
-        //         cout << "third loop i: " << i_copy << endl;
-        //     }
-        // }
     }
     currentMax += takeDiagMax;
     
-    // cout << "Past first for loop" << endl;
     // Same row but columns that are farther to the right
     for (auto columnCopy = j+1; columnCopy < (int)adj_list[i].size(); ++columnCopy){
             currentMax = max(currentMax, solve_subproblem_recursive(adj_list, subproblem_answers, i, columnCopy, east_cities));
         }
 
-    // cout << "Past second for loop" << endl;
     // Same column but rows that are further down
     if ((i+1) < (int)adj_list.size()){
         for (auto rowcopy = i+1; rowcopy < (int)adj_list.size(); ++rowcopy) {
@@ -145,7 +114,6 @@ int solve_subproblem_recursive(const vector<vector<Bridge>> & adj_list, vector<i
             }
         }
     }
-    // cout << "Storing the answer" << endl;
     subproblem_answers.at(i*east_cities+adj_list[i][j][0]) = currentMax;
     return currentMax;
 }
