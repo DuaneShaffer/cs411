@@ -21,7 +21,7 @@ using Bridge = std::vector<int>;
 int build(int w, int e, const std::vector<Bridge> & bridges);
 
 
-int solve_subproblem_recursive(const std::vector<std::vector<Bridge>> & adj_list, std::vector<int> & subproblem_answers, int w, int e);
+int solve_subproblem_recursive(const std::vector<std::vector<Bridge>> & adj_list, std::vector<int> & subproblem_answers, int w, int e, int east_cities);
 
 
 #endif //BUILD_HPP
