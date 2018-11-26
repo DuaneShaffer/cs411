@@ -20,31 +20,8 @@ using Bridge = std::vector<int>;
 
 int build(int w, int e, const std::vector<Bridge> & bridges);
 
-class BridgeTollMaximizer {
-public:
-    BridgeTollMaximizer(const std::vector<Bridge> & bridges):
-                                        _combination(sizeof(bridges)),
-                                        _max_toll(0),
-                                        _bridges(bridges),
-                                        _bad_bridge_combos(bridges.size()){
-        _fill_bad_combos_vector();
-    }
 
-    ~BridgeTollMaximizer() = default;
-
-    int get_max_toll_value();
-
-private:
-    std::vector<int> _combination;
-    int _max_toll;    
-    const std::vector<Bridge> & _bridges;
-    std::vector<std::vector<int>> _bad_bridge_combos;
-
-    void _fill_bad_combos_vector();
-    void _calculate_tolls_recursive(unsigned int slot = 0);
-    bool _b_valid_combo();
-    int _get_combo_value();    
-};
+int solve_subproblem_recursive(const std::vector<std::vector<Bridge>> & adj_list, std::vector<int> & subproblem_answers, int w, int e);
 
 
 #endif //BUILD_HPP
