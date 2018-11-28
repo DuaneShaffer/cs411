@@ -57,12 +57,10 @@ void BridgeTollMaximizer::_calculate_tolls_recursive(unsigned int slot) { // slo
             _max_toll = temp;
         return;
     }
-    if (_combination[slot] == 0) {
-        _combination[slot] = 1;
-        if (_b_valid_combo())
-            _calculate_tolls_recursive(slot+1);
-        _combination[slot] = 0;
-    }
+    _combination[slot] = 1;
+    if (_b_valid_combo())
+        _calculate_tolls_recursive(slot+1);
+    _combination[slot] = 0;
     _calculate_tolls_recursive(slot+1);
 
 }
