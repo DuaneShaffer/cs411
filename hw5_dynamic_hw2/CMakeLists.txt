@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5.1)
-project(hw2)
+project(hw5_dynamic_hw2)
 
 # Compiler Options
 set(CMAKE_CXX_FLAGS "-O3 -Wall")
