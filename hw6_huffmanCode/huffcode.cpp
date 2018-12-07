@@ -1,14 +1,11 @@
-// huffcode.cpp  UNFINISHED
-// Glenn G. Chappell
-// 29 Nov 2015
+// huffcode.cpp 
+// Duane Shaffer
+// 7 December 2018
 //
-// For CS 411/611 Fall 2015
-// Assignment 6, Exercise A
-// Source for class HuffCode
-//
-// Modified 11/22/17
-// Chris Hartman
-// For CS 411 Fall 2017
+// For CS 411 Fall 2018
+// Source file for huffman code algorithm
+// Used in HW 6
+// Based off source code provided by Dr. Glen G Chappell and Dr. Chris Hartman
 
 #include "huffcode.hpp"  // for class HuffCode declaration
 #include <string>
