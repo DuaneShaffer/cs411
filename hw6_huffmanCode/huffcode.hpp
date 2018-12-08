@@ -12,6 +12,15 @@
 
 #include <string>
 #include <unordered_map>
+#include <memory>
+#include <queue>
+
+struct Node {
+    char character = 0;
+    int weightVal = 0;
+    std::shared_ptr<Node> left = nullptr;
+    std::shared_ptr<Node> right = nullptr;
+};
 
 // Class HuffCode
 // Encoding & decoding using a Huffman code
@@ -33,7 +42,16 @@ public:
 
 // ***** HuffCode: data members *****
 private:
+    std::shared_ptr<Node> _tree;
+    std::priority_queue<std::shared_ptr<Node>> _nodes;
+    std::unordered_map<char,std::string> _codedLetters;
 
+// ***** HuffCode: private member functions *****
+private:
+    void _seedNodeQueue(const std::unordered_map<char, int> & theweights);
+    void _condenseNodesIntoATree();
+    void _findCodedLetters(std::shared_ptr<Node> node, const std::string &word);
+    
 };  // End class HuffCode
 
 
