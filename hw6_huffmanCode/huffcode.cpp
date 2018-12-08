@@ -17,11 +17,6 @@ using std::shared_ptr;
 using std::make_shared;
 #include <queue>
 using std::priority_queue;
-#include <iostream>
-using std::cin;
-using std::cout;
-using std::endl;
-
 
 bool operator<(const shared_ptr<Node> &x, const shared_ptr<Node> &y)
 {
@@ -33,7 +28,7 @@ void HuffCode::setWeights(const unordered_map<char, int> & theweights)
     if (theweights.empty())
         return;
 
-    if (theweights.size() ==1) {
+    if (theweights.size() == 1) {
         _codedLetters[theweights.begin()->first]='0';
         return;
     }
@@ -41,7 +36,9 @@ void HuffCode::setWeights(const unordered_map<char, int> & theweights)
     _seedNodeQueue(theweights);    
     _condenseNodesIntoATree();
     _tree = _nodes.top();
-    _findCodedLetters(_tree,"");
+    _createCodewords(_tree,"");
+
+    
 }
 
 void HuffCode::_seedNodeQueue(const unordered_map<char, int> & theweights) {
@@ -59,14 +56,14 @@ void HuffCode::_condenseNodesIntoATree() {
     }
 }
 
-void HuffCode::_findCodedLetters(shared_ptr<Node> node, const string &word)
+void HuffCode::_createCodewords(shared_ptr<Node> node, const string &word)
 {
     if(node->character != 0) {
         _codedLetters[node->character] = word;
         return;
     }
-    _findCodedLetters(node->left,word+"0");
-    _findCodedLetters(node->right,word+"1");
+    _createCodewords(node->left,word+"0");
+    _createCodewords(node->right,word+"1");
 }
 
 string HuffCode::encode(const string & text) const
