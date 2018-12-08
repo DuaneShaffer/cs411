@@ -3,7 +3,7 @@ project(hw6)
 
 # Compiler Options
 set(CMAKE_CXX_FLAGS "-O3 -Wall")
-set (CMAKE_CXX_STANDARD 11)
+set (CMAKE_CXX_STANDARD 14)
 
 file(GLOB SOURCES "*.cpp")
 
