@@ -5,7 +5,7 @@ This is a method to find the maximum flow between a source and a sink when given
 Just run:
 ``` 
 cmake . 
-make
+make -j8
 ./file.out  
 ```
 
